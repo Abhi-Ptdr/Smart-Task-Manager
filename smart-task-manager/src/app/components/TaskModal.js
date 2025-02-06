@@ -2,12 +2,21 @@
 
 import React, { useState } from "react";
 import { useTaskStore } from "../store/taskStore";
+import Select from "react-select";
+
+const employees = [
+  { value: "Alice", label: "Alice" },
+  { value: "Bob", label: "Bob" },
+  { value: "Charlie", label: "Charlie" },
+  { value: "David", label: "David" },
+]; // Example employee names
 
 const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category }) => {
   const { addTask, editTask } = useTaskStore();
   const [title, setTitle] = useState(taskToEdit?.title || "");
   const [start, setStart] = useState(taskToEdit?.start || "");
   const [end, setEnd] = useState(taskToEdit?.end || "");
+  const [assignees, setAssignees] = useState(taskToEdit?.assignees || []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -16,6 +25,7 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category }) 
       title,
       start,
       end,
+      assignees,
       category,
     };
     if (isEditing) {
@@ -58,6 +68,17 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category }) 
               value={end}
               onChange={(e) => setEnd(e.target.value)}
               className="w-full p-2 border rounded"
+              required
+            />
+          </div>
+          <div className="mb-4">
+            <label className="block mb-2 font-medium">Assignees</label>
+            <Select
+              isMulti
+              value={assignees}
+              onChange={setAssignees}
+              options={employees}
+              className="w-full"
               required
             />
           </div>
