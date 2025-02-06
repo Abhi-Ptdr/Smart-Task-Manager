@@ -11,7 +11,13 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category }) 
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const task = { id: isEditing ? taskToEdit.id : Date.now(), title, start, end, category };
+    const task = {
+      id: isEditing ? taskToEdit.id : `${Date.now()}`, // Ensure unique ID
+      title,
+      start,
+      end,
+      category,
+    };
     if (isEditing) {
       editTask(task);
     } else {

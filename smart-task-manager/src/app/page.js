@@ -32,10 +32,9 @@ const HomePage = () => {
     setCurrentCategory("");
   };
 
-  // Add or edit task
   const handleAddTask = (task) => {
     const newTask = {
-      id: Date.now().toString(), // Ensure unique ID
+      id: `${Date.now()}`, // Ensure unique ID
       ...task,
       category: currentCategory, // Assign correct category
     };
