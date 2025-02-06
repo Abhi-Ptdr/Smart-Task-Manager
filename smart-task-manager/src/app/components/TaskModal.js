@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import { useTaskStore } from "../store/taskStore";
 
-const TaskModal = ({ isEditing = false, taskToEdit = null, onClose }) => {
+const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category }) => {
   const { addTask, editTask } = useTaskStore();
   const [title, setTitle] = useState(taskToEdit?.title || "");
   const [start, setStart] = useState(taskToEdit?.start || "");
@@ -11,7 +11,7 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const task = { id: isEditing ? taskToEdit.id : Date.now(), title, start, end };
+    const task = { id: isEditing ? taskToEdit.id : Date.now(), title, start, end, category };
     if (isEditing) {
       editTask(task);
     } else {
