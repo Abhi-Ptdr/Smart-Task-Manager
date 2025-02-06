@@ -2,11 +2,10 @@
 
 import React from "react";
 import Timeline from "react-calendar-timeline";
+import { useTaskStore } from "../store/taskStore";
 
-const TimelineDashboard = ({ tasks = [] }) => {
-  if (!tasks || tasks.length === 0) {
-    return <p className="text-center text-gray-500">No tasks available</p>;
-  }
+const TimelineDashboard = () => {
+  const { tasks } = useTaskStore();
 
   const timelineData = tasks.map((task) => ({
     id: task.id,
@@ -22,7 +21,7 @@ const TimelineDashboard = ({ tasks = [] }) => {
         groups={[{ id: 1, title: "Tasks" }]}
         items={timelineData}
         defaultTimeStart={new Date()}
-        defaultTimeEnd={new Date().setHours(new Date().getHours() + 2)}
+        defaultTimeEnd={new Date().setHours(new Date().getHours() + 4)}
       />
     </div>
   );
