@@ -2,8 +2,8 @@
 
 import React, { useState } from "react";
 import { DragDropContext } from "@hello-pangea/dnd";
+import { useRouter } from "next/navigation";
 import CategoryCard from "./components/CategoryCard";
-import TimelineDashboard from "./components/TimelineDashboard";
 import TaskModal from "./components/TaskModal";
 import { useTaskStore } from "./store/taskStore";
 
@@ -20,6 +20,7 @@ const HomePage = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [currentCategory, setCurrentCategory] = useState("");
+  const router = useRouter();
 
   const openModal = (category) => {
     setCurrentCategory(category);
@@ -66,7 +67,15 @@ const HomePage = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="p-4">
-        <h1 className="text-2xl font-bold mb-4">Smart Task Manager</h1>
+        <div className="flex justify-between items-center mb-4">
+          <h1 className="text-2xl font-bold">Smart Task Manager</h1>
+          <button
+            onClick={() => router.push("/members")}
+            className="px-4 py-2 bg-blue-500 text-white rounded"
+          >
+            Members Dashboards
+          </button>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {CATEGORIES.map((category) => (
             <CategoryCard
@@ -83,7 +92,6 @@ const HomePage = () => {
             />
           ))}
         </div>
-        <TimelineDashboard tasks={tasks} />
         {isModalOpen && (
           <TaskModal
             isEditing={!!editingTask}
