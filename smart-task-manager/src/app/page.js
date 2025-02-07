@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
+import { DragDropContext } from "@hello-pangea/dnd";
 import CategoryCard from "./components/CategoryCard";
 import TimelineDashboard from "./components/TimelineDashboard";
 import TaskModal from "./components/TaskModal";
@@ -15,7 +16,7 @@ const CATEGORIES = [
 ];
 
 const HomePage = () => {
-  const { tasks, addTask, editTask } = useTaskStore();
+  const { tasks, addTask, editTask, updateTaskCategory } = useTaskStore();
   const [isModalOpen, setModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [currentCategory, setCurrentCategory] = useState("");
@@ -47,35 +48,52 @@ const HomePage = () => {
     closeModal();
   };
 
+  const onDragEnd = (result) => {
+    if (!result.destination) return;
+
+    const { source, destination } = result;
+
+    // If the task is dropped in the same category, reorder the tasks
+    if (source.droppableId === destination.droppableId) {
+      // Handle reordering logic here if needed
+    } else {
+      // Update the task category
+      const taskId = result.draggableId;
+      updateTaskCategory(taskId, destination.droppableId);
+    }
+  };
+
   return (
-    <div className="p-4">
-      <h1 className="text-2xl font-bold mb-4">Smart Task Manager</h1>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-        {CATEGORIES.map((category) => (
-          <CategoryCard
-            key={category}
-            title={category}
-            category={category}
-            tasks={tasks} // Make sure tasks is properly passed
-            onAddTask={() => openModal(category)}
-            onEditTask={(task) => {
-              setEditingTask(task);
-              setCurrentCategory(category);
-              setModalOpen(true);
-            }}
+    <DragDropContext onDragEnd={onDragEnd}>
+      <div className="p-4">
+        <h1 className="text-2xl font-bold mb-4">Smart Task Manager</h1>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          {CATEGORIES.map((category) => (
+            <CategoryCard
+              key={category}
+              title={category}
+              category={category}
+              tasks={tasks} // Make sure tasks is properly passed
+              onAddTask={() => openModal(category)}
+              onEditTask={(task) => {
+                setEditingTask(task);
+                setCurrentCategory(category);
+                setModalOpen(true);
+              }}
+            />
+          ))}
+        </div>
+        <TimelineDashboard tasks={tasks} />
+        {isModalOpen && (
+          <TaskModal
+            isEditing={!!editingTask}
+            taskToEdit={editingTask}
+            onClose={closeModal}
+            category={currentCategory} // Pass the current category to the modal
           />
-        ))}
+        )}
       </div>
-      <TimelineDashboard tasks={tasks} />
-      {isModalOpen && (
-        <TaskModal
-          isEditing={!!editingTask}
-          taskToEdit={editingTask}
-          onClose={closeModal}
-          category={currentCategory} // Pass the current category to the modal
-        />
-      )}
-    </div>
+    </DragDropContext>
   );
 };
 
