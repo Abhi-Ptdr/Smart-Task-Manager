@@ -2,13 +2,9 @@
 
 import React from "react";
 import { Droppable, Draggable } from "@hello-pangea/dnd";
-import { useTaskStore } from "../store/taskStore";
 import TaskItem from "./TaskItem";
 
-const TaskList = ({ category }) => {
-  const { tasks } = useTaskStore();
-
-  // Ensure we filter tasks correctly per category
+const TaskList = ({ category, tasks, onEditTask }) => {
   const filteredTasks = tasks.filter((task) => task.category === category);
 
   return (
@@ -23,7 +19,7 @@ const TaskList = ({ category }) => {
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
                 >
-                  <TaskItem task={task} provided={provided} />
+                  <TaskItem task={task} provided={provided} onEditTask={onEditTask} />
                 </div>
               )}
             </Draggable>

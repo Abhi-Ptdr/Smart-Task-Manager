@@ -21,3 +21,15 @@ body {
 }
 
 @import "react-calendar-timeline/dist/style.css";
+
+.category-card {
+  transition: all 0.3s ease;
+}
+
+.category-card.expanded {
+  flex: 1 1 auto;
+}
+
+.category-card:not(.expanded) {
+  flex: 1 1 30%;
+}
