@@ -41,7 +41,7 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category }) 
       <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold">{isEditing ? "Edit Task" : "Add Task"}</h2>
-          <button onClick={onClose} className="text-gray-500 hover:text-gray-700">
+          <button onClick={onClose} className="button-12">
             &times;
           </button>
         </div>
@@ -91,12 +91,13 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category }) 
             <button
               type="button"
               onClick={onClose}
-              className="mr-4 px-4 py-2 bg-gray-300 rounded"
+              className="button-12 mx-2"
+              style={{ height: "30px", width: "80px" }}
             >
               Cancel
             </button>
-            <button type="submit" className="px-4 py-2 rounded">
-              {isEditing ? "Save" : "Add"}
+            <button type="submit" className="button-64">
+              <span class="text">{isEditing ? "Save" : "Add"} </span>
             </button>
           </div>
         </form>

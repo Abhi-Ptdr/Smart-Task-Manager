@@ -71,7 +71,7 @@ const HomePage = () => {
           <h1 className="text-2xl font-bold">Smart Task Manager</h1>
           <button
             onClick={() => router.push("/members")}
-            className="btn mb-1 px-4 py-2 rounded"
+            className="button-13"
           >
             Members Dashboards
           </button>

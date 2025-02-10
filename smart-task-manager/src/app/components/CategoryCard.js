@@ -17,9 +17,9 @@ const CategoryCard = ({ title, category, tasks, onAddTask, onEditTask }) => {
         <h2 className="text-xl font-bold">{title}</h2>
         <button
           onClick={handleAddTask}
-          className="px-4 py-2 rounded"
+          className="button-64"
         >
-          Add Task
+          <span class="text">Add Task</span>
         </button>
       </div>
       <TaskList category={category} tasks={tasks} onEditTask={onEditTask} />
