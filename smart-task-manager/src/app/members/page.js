@@ -13,7 +13,7 @@ const MembersDashboard = () => {
         <h1 className="text-2xl font-bold">Members Dashboard</h1>
         <button
           onClick={() => router.push("/")}
-          className="px-4 py-2 bg-blue-500 text-white rounded"
+          className="btn px-4 py-2 rounded"
         >
           Home
         </button>

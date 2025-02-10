@@ -5,11 +5,13 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  --button-color: #c52020;
+  --button-hover-color: #a41a1a;
 }
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #0a0a0a;
+    --background: #0d1117;
     --foreground: #ededed;
   }
 }
@@ -32,4 +34,28 @@ body {
 
 .category-card:not(.expanded) {
   flex: 1 1 30%;
+}
+
+.task-item {
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.task-item:hover {
+  background-color: #e2e8f0; /* Light gray background on hover */
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+button, .btn {
+  background-color: var(--button-color) !important;
+  color: var(--foreground) !important;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+button:hover, .btn:hover {
+  background-color: var(--button-hover-color) !important;
+  transform: translateY(-2px); /* Slight lift on hover */
+}
+
+button:active, .btn:active {
+  transform: translateY(0) !important; /* Reset lift on click */
 }
