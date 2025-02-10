@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import CategoryCard from "./components/CategoryCard";
 import TaskModal from "./components/TaskModal";
 import { useTaskStore } from "./store/taskStore";
+import { MdDashboard } from "react-icons/md";
 
 const CATEGORIES = [
   "General Information",
@@ -73,7 +74,10 @@ const HomePage = () => {
             onClick={() => router.push("/members")}
             className="button-13"
           >
-            Members Dashboards
+            <div className="flex items-center justify-center space-x-2">
+              <div>Members Dashboards</div>
+              <div><MdDashboard /></div>
+            </div>
           </button>
         </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">

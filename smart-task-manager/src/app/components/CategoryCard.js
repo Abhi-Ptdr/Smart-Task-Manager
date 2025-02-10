@@ -19,7 +19,7 @@ const CategoryCard = ({ title, category, tasks, onAddTask, onEditTask }) => {
           onClick={handleAddTask}
           className="button-64"
         >
-          <span class="text">Add Task</span>
+          <span className="text">Add Task</span>
         </button>
       </div>
       <TaskList category={category} tasks={tasks} onEditTask={onEditTask} />

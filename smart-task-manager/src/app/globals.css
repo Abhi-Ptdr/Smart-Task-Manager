@@ -4,9 +4,7 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
-  --button-color: #c52020;
-  --button-hover-color: #a41a1a;
+  --foreground: #000000;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,6 +18,10 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+h2, h3, p, label, .w-full{
+  color: #00122d;
 }
 
 @import "react-calendar-timeline/dist/style.css";
@@ -43,6 +45,40 @@ body {
 .task-item:hover {
   background-color: #e2e8f0; /* Light gray background on hover */
   transform: translateY(-2px); /* Slight lift on hover */
+}
+
+/* Override react-calendar-timeline styles */
+.react-calendar-timeline .rct-sidebar {
+  background-color: #a5d5fd; /* Change sidebar background color */
+  color: #333; /* Change sidebar text color */
+}
+
+.react-calendar-timeline .rct-item {
+  background-color: #c52020; /* Change item background color */
+  color: #cec9c9; /* Change item text color */
+  border-radius: 4px; /* Add border radius to items */
+}
+
+.react-calendar-timeline .rct-item:hover {
+  background-color: #a41a1a; /* Change item background color on hover */
+}
+
+.react-calendar-timeline .rct-header-root {
+  background-color: #a5d5fd; /* Change header background color */
+  color: #0e0e0e; /* Change header text color */
+}
+
+.react-calendar-timeline .rct-header-root .rct-dateHeader {
+  border-bottom: 1px solid #ccc; /* Change header border color */
+  background-color: #a0b0ff;
+}
+
+.react-calendar-timeline .rct-header-root .rct-dateHeader-primary {
+  font-weight: bold; /* Make primary date header bold */
+}
+
+.react-calendar-timeline .rct-header-root .rct-dateHeader-secondary {
+  font-size: 0.9em; /* Change secondary date header font size */
 }
 
 /* CSS */
@@ -117,7 +153,7 @@ body {
   -webkit-user-select: none;
   touch-action: manipulation;
   vertical-align: middle;
-  width: 180px;
+  width: 200px;
 }
 
 .button-13:hover {
@@ -138,7 +174,6 @@ body {
   font-family: -apple-system, BlinkMacSystemFont, 'Roboto', sans-serif;
   border-radius: 6px;
   border: none;
-
   background: #6E6D70;
   box-shadow: 0px 0.5px 1px rgba(0, 0, 0, 0.1), inset 0px 0.5px 0.5px rgba(255, 255, 255, 0.5), 0px 0px 0px 0.5px rgba(0, 0, 0, 0.12);
   color: #DFDEDF;

@@ -97,7 +97,7 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category }) 
               Cancel
             </button>
             <button type="submit" className="button-64">
-              <span class="text">{isEditing ? "Save" : "Add"} </span>
+              <span className="text">{isEditing ? "Save" : "Add"} </span>
             </button>
           </div>
         </form>

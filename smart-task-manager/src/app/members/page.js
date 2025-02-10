@@ -3,6 +3,7 @@
 import React from "react";
 import { useRouter } from "next/navigation";
 import TimelineDashboard from "../components/TimelineDashboard";
+import { FaHome } from "react-icons/fa";
 
 const MembersDashboard = () => {
   const router = useRouter();
@@ -13,9 +14,12 @@ const MembersDashboard = () => {
         <h1 className="text-2xl font-bold">Members Dashboard</h1>
         <button
           onClick={() => router.push("/")}
-          className="button-13" style={{ width: "100px" }}
+          className="button-13" style={{ width: "120px", }}
         >
-          Home
+          <div className="flex items-center justify-center space-x-2">
+            <div>Home</div>
+            <div><FaHome/></div>
+          </div>
         </button>
       </div>
       <TimelineDashboard />
