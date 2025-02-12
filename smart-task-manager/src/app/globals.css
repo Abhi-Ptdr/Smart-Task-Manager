@@ -5,11 +5,11 @@
 :root {
   --background: #ffffff;
   --foreground: #000000;
-  --category-general: #ffadad;
-  --category-backlog: #ffd6a5;
-  --category-in-progress: #fdffb6;
-  --category-paused: #caffbf;
-  --category-ready-for-launch: #9bf6ff;
+  --category-general: #008939;
+  --category-backlog: #3a007c;
+  --category-in-progress: #a5003a;
+  --category-paused: #97009c;
+  --category-ready-for-launch: #00909d;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -58,8 +58,13 @@ h2, h3, p, label, .w-full {
   color: #333 !important; /* Change sidebar text color */
 }
 
+.react-calendar-timeline .rct-item {
+  color: #fff !important;
+  border-radius: 4px !important;
+}
+
 .react-calendar-timeline .rct-item:hover {
-  background-color: #a41a1a !important; /* Change item background color on hover */
+  background-color: #2b2a2a !important; /* Change item background color on hover */
 }
 
 .react-calendar-timeline .rct-header-root {
@@ -83,32 +88,22 @@ h2, h3, p, label, .w-full {
 /* Custom styles for timeline items based on category */
 .react-calendar-timeline .rct-item.category-general {
   background-color: var(--category-general) !important;
-  color: #000 !important;
-  border-radius: 4px !important;
 }
 
 .react-calendar-timeline .rct-item.category-backlog {
   background-color: var(--category-backlog) !important;
-  color: #000 !important;
-  border-radius: 4px !important;
 }
 
 .react-calendar-timeline .rct-item.category-in-progress {
   background-color: var(--category-in-progress) !important;
-  color: #000 !important;
-  border-radius: 4px !important;
 }
 
 .react-calendar-timeline .rct-item.category-paused {
   background-color: var(--category-paused) !important;
-  color: #000 !important;
-  border-radius: 4px !important;
 }
 
 .react-calendar-timeline .rct-item.category-ready-for-launch {
   background-color: var(--category-ready-for-launch) !important;
-  color: #000 !important;
-  border-radius: 4px !important;
 }
 
 /* CSS */
