@@ -13,12 +13,12 @@ const categoryClasses = {
   "Ready For Launch": "category-ready-for-launch",
 };
 
-const TimelineDashboard = () => {
+const TimelineDashboard = ({ view }) => {
   const { tasks } = useTaskStore();
   const [timelineData, setTimelineData] = useState([]);
   const [groups, setGroups] = useState([]);
-  const [defaultTimeStart, setDefaultTimeStart] = useState(null);
-  const [defaultTimeEnd, setDefaultTimeEnd] = useState(null);
+  const [visibleTimeStart, setVisibleTimeStart] = useState(null);
+  const [visibleTimeEnd, setVisibleTimeEnd] = useState(null);
 
   useEffect(() => {
     // Define all possible assignees
@@ -55,13 +55,44 @@ const TimelineDashboard = () => {
     setGroups(newGroups);
     setTimelineData(newTimelineData);
 
-    // Set default time range
-    setDefaultTimeStart(moment().add(-12, "hour"));
-    setDefaultTimeEnd(moment().add(12, "hour"));
-  }, [tasks]);
+    // Set visible time range based on the selected view
+    switch (view) {
+      case "year":
+        setVisibleTimeStart(moment().startOf("year").valueOf());
+        setVisibleTimeEnd(moment().endOf("year").valueOf());
+        break;
+      case "month":
+        setVisibleTimeStart(moment().startOf("month").valueOf());
+        setVisibleTimeEnd(moment().endOf("month").valueOf());
+        break;
+      case "day":
+        setVisibleTimeStart(moment().startOf("day").valueOf());
+        setVisibleTimeEnd(moment().endOf("day").valueOf());
+        break;
+      case "hour":
+        setVisibleTimeStart(moment().startOf("hour").valueOf());
+        setVisibleTimeEnd(moment().endOf("hour").valueOf());
+        break;
+      default:
+        setVisibleTimeStart(moment().add(-12, "hour").valueOf());
+        setVisibleTimeEnd(moment().add(12, "hour").valueOf());
+        break;
+    }
+  }, [tasks, view]);
 
-  if (!defaultTimeStart || !defaultTimeEnd) {
-    return null; // Render nothing until the default times are set
+  const handleTimeChange = (visibleTimeStart, visibleTimeEnd, updateScrollCanvas) => {
+    setVisibleTimeStart(visibleTimeStart);
+    setVisibleTimeEnd(visibleTimeEnd);
+    updateScrollCanvas(visibleTimeStart, visibleTimeEnd);
+  };
+
+  const handleTimeInit = (visibleTimeStart, visibleTimeEnd) => {
+    setVisibleTimeStart(visibleTimeStart);
+    setVisibleTimeEnd(visibleTimeEnd);
+  };
+
+  if (!visibleTimeStart || !visibleTimeEnd) {
+    return null; // Render nothing until the visible times are set
   }
 
   return (
@@ -69,8 +100,10 @@ const TimelineDashboard = () => {
       <Timeline
         groups={groups}
         items={timelineData}
-        defaultTimeStart={defaultTimeStart}
-        defaultTimeEnd={defaultTimeEnd}
+        visibleTimeStart={visibleTimeStart}
+        visibleTimeEnd={visibleTimeEnd}
+        onTimeChange={handleTimeChange}
+        onTimeInit={handleTimeInit}
       />
     </div>
   );
