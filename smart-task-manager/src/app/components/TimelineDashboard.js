@@ -5,6 +5,14 @@ import Timeline from "react-calendar-timeline";
 import { useTaskStore } from "../store/taskStore";
 import moment from "moment";
 
+const categoryClasses = {
+  "General Information": "category-general",
+  "Backlog": "category-backlog",
+  "In Progress": "category-in-progress",
+  "Paused": "category-paused",
+  "Ready For Launch": "category-ready-for-launch",
+};
+
 const TimelineDashboard = () => {
   const { tasks } = useTaskStore();
   const [timelineData, setTimelineData] = useState([]);
@@ -38,6 +46,7 @@ const TimelineDashboard = () => {
             title: task.title,
             start_time: moment(task.start),
             end_time: moment(task.end),
+            className: categoryClasses[task.category], // Add custom class based on category
           });
         }
       });

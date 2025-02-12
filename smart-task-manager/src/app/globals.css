@@ -5,6 +5,11 @@
 :root {
   --background: #ffffff;
   --foreground: #000000;
+  --category-general: #ffadad;
+  --category-backlog: #ffd6a5;
+  --category-in-progress: #fdffb6;
+  --category-paused: #caffbf;
+  --category-ready-for-launch: #9bf6ff;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -20,7 +25,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-h2, h3, p, label, .w-full{
+h2, h3, p, label, .w-full {
   color: #00122d;
 }
 
@@ -49,36 +54,61 @@ h2, h3, p, label, .w-full{
 
 /* Override react-calendar-timeline styles */
 .react-calendar-timeline .rct-sidebar {
-  background-color: #a5d5fd; /* Change sidebar background color */
-  color: #333; /* Change sidebar text color */
-}
-
-.react-calendar-timeline .rct-item {
-  background-color: #c52020; /* Change item background color */
-  color: #cec9c9; /* Change item text color */
-  border-radius: 4px; /* Add border radius to items */
+  background-color: #a5d5fd !important; /* Change sidebar background color */
+  color: #333 !important; /* Change sidebar text color */
 }
 
 .react-calendar-timeline .rct-item:hover {
-  background-color: #a41a1a; /* Change item background color on hover */
+  background-color: #a41a1a !important; /* Change item background color on hover */
 }
 
 .react-calendar-timeline .rct-header-root {
-  background-color: #a5d5fd; /* Change header background color */
-  color: #0e0e0e; /* Change header text color */
+  background-color: #a5d5fd !important; /* Change header background color */
+  color: #0e0e0e !important; /* Change header text color */
 }
 
 .react-calendar-timeline .rct-header-root .rct-dateHeader {
-  border-bottom: 1px solid #ccc; /* Change header border color */
-  background-color: #a0b0ff;
+  border-bottom: 1px solid #ccc !important; /* Change header border color */
+  background-color: #a0b0ff !important;
 }
 
 .react-calendar-timeline .rct-header-root .rct-dateHeader-primary {
-  font-weight: bold; /* Make primary date header bold */
+  font-weight: bold !important; /* Make primary date header bold */
 }
 
 .react-calendar-timeline .rct-header-root .rct-dateHeader-secondary {
-  font-size: 0.9em; /* Change secondary date header font size */
+  font-size: 0.9em !important; /* Change secondary date header font size */
+}
+
+/* Custom styles for timeline items based on category */
+.react-calendar-timeline .rct-item.category-general {
+  background-color: var(--category-general) !important;
+  color: #000 !important;
+  border-radius: 4px !important;
+}
+
+.react-calendar-timeline .rct-item.category-backlog {
+  background-color: var(--category-backlog) !important;
+  color: #000 !important;
+  border-radius: 4px !important;
+}
+
+.react-calendar-timeline .rct-item.category-in-progress {
+  background-color: var(--category-in-progress) !important;
+  color: #000 !important;
+  border-radius: 4px !important;
+}
+
+.react-calendar-timeline .rct-item.category-paused {
+  background-color: var(--category-paused) !important;
+  color: #000 !important;
+  border-radius: 4px !important;
+}
+
+.react-calendar-timeline .rct-item.category-ready-for-launch {
+  background-color: var(--category-ready-for-launch) !important;
+  color: #000 !important;
+  border-radius: 4px !important;
 }
 
 /* CSS */
