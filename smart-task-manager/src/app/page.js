@@ -5,6 +5,8 @@ import { DragDropContext } from "@hello-pangea/dnd";
 import { useRouter } from "next/navigation";
 import CategoryCard from "./components/CategoryCard";
 import TaskModal from "./components/TaskModal";
+import AddCategoryCard from "./components/AddCategoryCard";
+import AddCategoryModal from "./components/AddCategoryModal";
 import { useTaskStore } from "./store/taskStore";
 import { MdDashboard } from "react-icons/md";
 
@@ -19,8 +21,10 @@ const CATEGORIES = [
 const HomePage = () => {
   const { tasks, addTask, editTask, updateTaskCategory, deleteTask } = useTaskStore();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isAddCategoryModalOpen, setAddCategoryModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [currentCategory, setCurrentCategory] = useState("");
+  const [categories, setCategories] = useState(CATEGORIES);
   const router = useRouter();
 
   const openModal = (category) => {
@@ -48,6 +52,10 @@ const HomePage = () => {
       addTask(newTask);
     }
     closeModal();
+  };
+
+  const handleAddCategory = (newCategory) => {
+    setCategories([...categories, newCategory]);
   };
 
   const onDragEnd = (result) => {
@@ -82,7 +90,7 @@ const HomePage = () => {
         </div>
         <hr className="hr mb-10 mt-3"/>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {CATEGORIES.map((category) => (
+          {categories.map((category) => (
             <CategoryCard
               key={category}
               title={category}
@@ -97,6 +105,7 @@ const HomePage = () => {
               onDeleteTask={deleteTask}
             />
           ))}
+          <AddCategoryCard onAddCategory={() => setAddCategoryModalOpen(true)} />
         </div>
         {isModalOpen && (
           <TaskModal
@@ -104,6 +113,13 @@ const HomePage = () => {
             taskToEdit={editingTask}
             onClose={closeModal}
             category={currentCategory} // Pass the current category to the modal
+          />
+        )}
+        {isAddCategoryModalOpen && (
+          <AddCategoryModal
+            isOpen={isAddCategoryModalOpen}
+            onClose={() => setAddCategoryModalOpen(false)}
+            onAddCategory={handleAddCategory}
           />
         )}
       </div>
