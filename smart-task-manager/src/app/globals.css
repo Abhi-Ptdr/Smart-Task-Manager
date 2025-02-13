@@ -54,7 +54,7 @@ h2, h3, p, label, .w-full {
 
 /* Override react-calendar-timeline styles */
 .react-calendar-timeline .rct-sidebar {
-  background-color: #a5d5fd !important; /* Change sidebar background color */
+  background-color: #e8f3fc !important; /* Change sidebar background color */
   color: #333 !important; /* Change sidebar text color */
 }
 
@@ -68,17 +68,18 @@ h2, h3, p, label, .w-full {
 }
 
 .react-calendar-timeline .rct-header-root {
-  background-color: #a5d5fd !important; /* Change header background color */
+  background-color: #d1e4f4 !important; /* Change header background color */
   color: #0e0e0e !important; /* Change header text color */
 }
 
 .react-calendar-timeline .rct-header-root .rct-dateHeader {
   border-bottom: 1px solid #ccc !important; /* Change header border color */
-  background-color: #a0b0ff !important;
+  background-color: #e8f3fc !important;
 }
 
 .react-calendar-timeline .rct-header-root .rct-dateHeader-primary {
   font-weight: bold !important; /* Make primary date header bold */
+  color: #0e0e0e !important; /* Change primary date header text color */
 }
 
 .react-calendar-timeline .rct-header-root .rct-dateHeader-secondary {
