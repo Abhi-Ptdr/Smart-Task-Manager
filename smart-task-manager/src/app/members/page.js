@@ -7,10 +7,10 @@ import { FaHome } from "react-icons/fa";
 
 const MembersDashboard = () => {
   const router = useRouter();
-  const [view, setView] = useState("year");
+  const [view, setView] = useState("day");
 
   return (
-    <div className="p-4">
+    <div className="p-4 flex flex-col">
       <div className="flex justify-between items-center mb-4">
         <h1 className="text-2xl font-bold">Members Dashboard</h1>
         <button
@@ -26,21 +26,23 @@ const MembersDashboard = () => {
           </div>
         </button>
       </div>
-      <div className="flex space-x-2 mb-4">
-        <button onClick={() => setView("year")} className="button-13">
-          Year View
+      <div className="grid grid-cols-2 gap-2 md:flex md:justify-center md:space-x-2 mt-4">
+        <button onClick={() => setView("year")} className="button-64">
+          <span className="text">Year View</span>
         </button>
-        <button onClick={() => setView("month")} className="button-13">
-          Month View
+        <button onClick={() => setView("month")} className="button-64">
+          <span className="text">Month View</span>
         </button>
-        <button onClick={() => setView("day")} className="button-13">
-          Day View
+        <button onClick={() => setView("day")} className="button-64">
+          <span className="text">Day View</span>
         </button>
-        <button onClick={() => setView("hour")} className="button-13">
-          Hour View
+        <button onClick={() => setView("hour")} className="button-64">
+          <span className="text">Hour View</span>
         </button>
       </div>
-      <TimelineDashboard view={view} />
+      <div className="flex-grow">
+        <TimelineDashboard view={view} />
+      </div>
     </div>
   );
 };
