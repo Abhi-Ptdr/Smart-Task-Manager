@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import TaskList from "./TaskList";
 
-const CategoryCard = ({ title, category, tasks, onAddTask, onEditTask }) => {
+const CategoryCard = ({ title, category, tasks, onAddTask, onEditTask, onDeleteTask }) => {
   const [isExpanded, setIsExpanded] = useState(false);
 
   const handleAddTask = () => {
@@ -22,7 +22,7 @@ const CategoryCard = ({ title, category, tasks, onAddTask, onEditTask }) => {
           <span className="text">Add Task</span>
         </button>
       </div>
-      <TaskList category={category} tasks={tasks} onEditTask={onEditTask} />
+      <TaskList category={category} tasks={tasks} onEditTask={onEditTask} onDeleteTask={onDeleteTask} />
     </div>
   );
 };

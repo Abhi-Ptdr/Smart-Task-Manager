@@ -17,7 +17,7 @@ const CATEGORIES = [
 ];
 
 const HomePage = () => {
-  const { tasks, addTask, editTask, updateTaskCategory } = useTaskStore();
+  const { tasks, addTask, editTask, updateTaskCategory, deleteTask } = useTaskStore();
   const [isModalOpen, setModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [currentCategory, setCurrentCategory] = useState("");
@@ -68,7 +68,7 @@ const HomePage = () => {
   return (
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="p-4">
-        <div className="flex justify-between items-center mb-4">
+        <div className="flex justify-between mt-2">
           <h1 className="text-2xl font-bold">Smart Task Manager</h1>
           <button
             onClick={() => router.push("/members")}
@@ -80,6 +80,7 @@ const HomePage = () => {
             </div>
           </button>
         </div>
+        <hr className="hr mb-10 mt-3"/>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {CATEGORIES.map((category) => (
             <CategoryCard
@@ -93,6 +94,7 @@ const HomePage = () => {
                 setCurrentCategory(category);
                 setModalOpen(true);
               }}
+              onDeleteTask={deleteTask}
             />
           ))}
         </div>

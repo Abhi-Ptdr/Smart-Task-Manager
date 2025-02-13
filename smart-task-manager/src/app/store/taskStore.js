@@ -15,4 +15,8 @@ export const useTaskStore = create((set) => ({
         task.id === taskId ? { ...task, category: newCategory } : task
       ),
     })),
+  deleteTask: (taskId) =>
+    set((state) => ({
+      tasks: state.tasks.filter((task) => task.id !== taskId),
+    })),
 }));

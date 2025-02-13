@@ -11,7 +11,7 @@ const MembersDashboard = () => {
 
   return (
     <div className="p-4 flex flex-col">
-      <div className="flex justify-between items-center mb-4">
+      <div className="flex justify-between mt-2">
         <h1 className="text-2xl font-bold">Members Dashboard</h1>
         <button
           onClick={() => router.push("/")}
@@ -26,7 +26,8 @@ const MembersDashboard = () => {
           </div>
         </button>
       </div>
-      <div className="grid grid-cols-2 gap-2 md:flex md:justify-center md:space-x-2 mt-4">
+      <hr className="mb-10 mt-3" style={{color:"white"}} />
+      <div className="grid grid-cols-2 gap-2 md:flex md:justify-center md:space-x-2">
         <button onClick={() => setView("year")} className="button-64">
           <span className="text">Year View</span>
         </button>

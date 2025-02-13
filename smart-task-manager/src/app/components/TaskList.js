@@ -4,7 +4,7 @@ import React from "react";
 import { Droppable, Draggable } from "@hello-pangea/dnd";
 import TaskItem from "./TaskItem";
 
-const TaskList = ({ category, tasks, onEditTask }) => {
+const TaskList = ({ category, tasks, onEditTask, onDeleteTask }) => {
   const filteredTasks = tasks.filter((task) => task.category === category);
 
   return (
@@ -19,7 +19,12 @@ const TaskList = ({ category, tasks, onEditTask }) => {
                   {...provided.draggableProps}
                   {...provided.dragHandleProps}
                 >
-                  <TaskItem task={task} provided={provided} onEditTask={onEditTask} />
+                  <TaskItem
+                    task={task}
+                    provided={provided}
+                    onEditTask={onEditTask}
+                    onDeleteTask={onDeleteTask}
+                  />
                 </div>
               )}
             </Draggable>
