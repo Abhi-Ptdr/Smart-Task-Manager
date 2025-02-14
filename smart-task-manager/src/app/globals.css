@@ -33,14 +33,12 @@ h2, h3, p, label, .w-full {
 
 .category-card {
   transition: all 0.3s ease;
+  height: 400px; /* Set a fixed height for the category cards */
 }
 
-.category-card.expanded {
-  flex: 1 1 auto;
-}
-
-.category-card:not(.expanded) {
-  flex: 1 1 30%;
+.task-list-container {
+  max-height: calc(100% - 60px); /* Adjust the height to fit within the category card */
+  overflow-y: auto; /* Make the tasks scrollable */
 }
 
 .task-item {

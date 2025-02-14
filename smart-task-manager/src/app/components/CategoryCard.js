@@ -12,7 +12,7 @@ const CategoryCard = ({ title, category, tasks, onAddTask, onEditTask, onDeleteT
   };
 
   return (
-    <div className={`category-card p-4 bg-white rounded-lg shadow-md mb-4 flex flex-col ${isExpanded ? 'expanded' : ''}`}>
+    <div className="category-card p-4 bg-white rounded-lg shadow-md mb-4 flex flex-col">
       <div className="flex justify-between items-center mb-4">
         <h2 className="text-xl font-bold">{title}</h2>
         <button
@@ -22,7 +22,9 @@ const CategoryCard = ({ title, category, tasks, onAddTask, onEditTask, onDeleteT
           <span className="text">Add Task</span>
         </button>
       </div>
-      <TaskList category={category} tasks={tasks} onEditTask={onEditTask} onDeleteTask={onDeleteTask} />
+      <div className="task-list-container flex-grow overflow-y-auto">
+        <TaskList category={category} tasks={tasks} onEditTask={onEditTask} onDeleteTask={onDeleteTask} />
+      </div>
     </div>
   );
 };
