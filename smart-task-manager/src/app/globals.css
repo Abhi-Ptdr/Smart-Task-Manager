@@ -34,6 +34,14 @@ h2, h3, p, label, .w-full {
   height: 50px;
 }
 
+.social:hover {
+  transform: scale(1.1);
+  transition: 0.3s;
+  background-color: #333;
+  border-radius: 30%;
+  cursor: pointer;
+}
+
 @import "react-calendar-timeline/dist/style.css";
 
 .category-card {
@@ -154,7 +162,7 @@ h2, h3, p, label, .w-full {
 }
 
 @media (min-width: 768px) {
-  .button-64 {
+  .button-13 {
     font-size: 15px;
     min-width: 100px;
     min-height: 28px;

@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import TimelineDashboard from "../components/TimelineDashboard";
-import { FaHome } from "react-icons/fa";
+import Buttons from "../components/Buttons";
+import Dock from "../components/Dock";
 
 const MembersDashboard = () => {
   const router = useRouter();
@@ -16,31 +17,23 @@ const MembersDashboard = () => {
           <img className="logo" src="/TaskLogo.png" alt="Task Logo" />
           <h1 className="text-2xl font-bold">Task Manager</h1>
         </div>
-        <button
-          onClick={() => router.push("/")}
-          className="button-13"
-          style={{ width: "120px" }}
-        >
-          <div className="flex items-center justify-center space-x-2">
-            <div>Home</div>
-            <div>
-              <FaHome />
-            </div>
-          </div>
-        </button>
+        <div className="flex items-center justify-center space-x-4">
+          <Dock />      
+          <Buttons  />
+        </div>
       </div>
-      <hr className="mb-10 mt-3" style={{color:"white"}} />
+      <hr className="mb-10 mt-3" />
       <div className="grid grid-cols-2 gap-2 md:flex md:justify-center md:space-x-2">
-        <button onClick={() => setView("year")} className="button-64">
+        <button onClick={() => setView("year")} className="button-13">
           <span className="text">Year View</span>
         </button>
-        <button onClick={() => setView("month")} className="button-64">
+        <button onClick={() => setView("month")} className="button-13">
           <span className="text">Month View</span>
         </button>
-        <button onClick={() => setView("day")} className="button-64">
+        <button onClick={() => setView("day")} className="button-13">
           <span className="text">Day View</span>
         </button>
-        <button onClick={() => setView("hour")} className="button-64">
+        <button onClick={() => setView("hour")} className="button-13">
           <span className="text">Hour View</span>
         </button>
       </div>

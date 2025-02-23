@@ -8,7 +8,8 @@ import TaskModal from "../components/TaskModal";
 import AddCategoryCard from "../components/AddCategoryCard";
 import AddCategoryModal from "../components/AddCategoryModal";
 import { useTaskStore } from "../store/taskStore";
-import { MdDashboard } from "react-icons/md";
+import Buttons from "../components/Buttons";
+import Dock from "../components/Dock";
 
 const CATEGORIES = [
   "General Information",
@@ -81,15 +82,10 @@ const TaskManagerPage = () => {
             <img className="logo" src="/TaskLogo.png" alt="Task Logo" />
             <h1 className="text-2xl font-bold">Task Manager</h1>
           </div>
-          <button
-            onClick={() => router.push("/members")}
-            className="button-13"
-          >
-            <div className="flex items-center justify-center space-x-2">
-              <div>Members Dashboards</div>
-              <div><MdDashboard /></div>
-            </div>
-          </button>
+          <div className="flex items-center justify-center space-x-4">
+            <Dock />      
+            <Buttons  />
+          </div>
         </div>
         <hr className="mb-10 mt-3"/>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
