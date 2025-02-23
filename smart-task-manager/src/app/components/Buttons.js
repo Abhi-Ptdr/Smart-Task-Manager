@@ -14,7 +14,7 @@ function Buttons() {
             <div className="inline-flex items-center overflow-hidden rounded-lg border border-stroke ">
               <button
                 onClick={() => router.push("/task-manager")}
-                className="border-r border-stroke px-3 py-2 text-base font-medium text-dark last-of-type:border-r-0 hover:bg-gray-2 hover:text-primary "
+                className="border-r border-stroke px-3 py-1 text-base font-medium text-dark btngrp"
               >
                 <div className="flex items-center justify-center space-x-2">
                   <div>Manage Tasks</div>
@@ -25,7 +25,7 @@ function Buttons() {
               </button>
               <button
                 onClick={() => router.push("/members")}
-                className="border-r border-stroke px-3 py-2 text-base font-medium text-dark last-of-type:border-r-0 hover:bg-gray-2 hover:text-primary "
+                className="border-r border-stroke px-3 py-1 text-base font-medium text-dark btngrp"
               >
                 <div className="flex items-center justify-center space-x-2">
                   <div>Timeline</div>
@@ -36,7 +36,7 @@ function Buttons() {
               </button>
               <button
                 onClick={() => router.push("/")}
-                className="border-r border-stroke px-3 py-2 text-base font-medium text-dark last-of-type:border-r-0 hover:bg-gray-2 hover:text-primary "
+                className="border-r border-stroke px-3 py-1 text-base font-medium text-dark btngrp"
               >
                 <div className="flex items-center justify-center space-x-2">
                   <div>Home</div>

@@ -5,12 +5,14 @@ import { useRouter } from "next/navigation";
 import TimelineDashboard from "../components/TimelineDashboard";
 import Buttons from "../components/Buttons";
 import Dock from "../components/Dock";
+import Footer from "../components/Footer";
 
 const MembersDashboard = () => {
   const router = useRouter();
   const [view, setView] = useState("day");
 
   return (
+    <>
     <div className="p-4 flex flex-col">
       <div className="flex justify-between mt-2">
         <div className="flex items-center justify-center space-x-2">
@@ -23,7 +25,10 @@ const MembersDashboard = () => {
         </div>
       </div>
       <hr className="mb-10 mt-3" />
-      <div className="grid grid-cols-2 gap-2 md:flex md:justify-center md:space-x-2">
+      <div className="heading">
+        <h1 className="text-2xl font-bold text-center">Your Tasks Timimg</h1>
+      </div>
+      <div className="mt-4 grid grid-cols-2 gap-2 md:flex md:justify-center md:space-x-2">
         <button onClick={() => setView("year")} className="button-13">
           <span className="text">Year View</span>
         </button>
@@ -41,6 +46,8 @@ const MembersDashboard = () => {
         <TimelineDashboard view={view} />
       </div>
     </div>
+    <Footer />
+    </>
   );
 };
 

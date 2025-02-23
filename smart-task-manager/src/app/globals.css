@@ -42,11 +42,31 @@ h2, h3, p, label, .w-full {
   cursor: pointer;
 }
 
+.btngrp:hover {
+  transform: scale(1.01);
+  transition: 0.3s;
+  background-color: #333;
+}
+
+.heading {
+  width: 100%;
+  background-color: #212121;
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.footer {
+  background-color: #212121;
+  margin-top: 150px;
+}
+
 @import "react-calendar-timeline/dist/style.css";
 
 .category-card {
   transition: all 0.3s ease;
-  height: 400px; /* Set a fixed height for the category cards */
+  height: 500px; /* Set a fixed height for the category cards */
+  background-color: #ebeff2;
 }
 
 .task-list-container {

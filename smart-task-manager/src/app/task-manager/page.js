@@ -10,6 +10,7 @@ import AddCategoryModal from "../components/AddCategoryModal";
 import { useTaskStore } from "../store/taskStore";
 import Buttons from "../components/Buttons";
 import Dock from "../components/Dock";
+import Footer from "../components/Footer";
 
 const CATEGORIES = [
   "General Information",
@@ -38,21 +39,6 @@ const TaskManagerPage = () => {
     setModalOpen(false);
     setEditingTask(null);
     setCurrentCategory("");
-  };
-
-  const handleAddTask = (task) => {
-    const newTask = {
-      id: `${Date.now()}`, // Ensure unique ID
-      ...task,
-      category: currentCategory, // Assign correct category
-    };
-
-    if (editingTask) {
-      editTask({ ...task, id: editingTask.id, category: currentCategory });
-    } else {
-      addTask(newTask);
-    }
-    closeModal();
   };
 
   const handleAddCategory = (newCategory) => {
@@ -88,6 +74,9 @@ const TaskManagerPage = () => {
           </div>
         </div>
         <hr className="mb-10 mt-3"/>
+        <div className="heading">
+          <h1 className="text-2xl font-bold text-center">Manage Your Tasks</h1>
+        </div>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {categories.map((category) => (
             <CategoryCard
@@ -122,6 +111,7 @@ const TaskManagerPage = () => {
           />
         )}
       </div>
+      <Footer />
     </DragDropContext>
   );
 };
