@@ -42,6 +42,17 @@ h2, h3, p, label, .w-full {
   cursor: pointer;
 }
 
+.btngrp:hover {
+  transform: scale(1.01);
+  transition: 0.3s;
+  background-color: #333;
+}
+
+.btngrp:active {
+  transform: scale(0.99);
+  background-color: #333;
+}
+
 @import "react-calendar-timeline/dist/style.css";
 
 .category-card {

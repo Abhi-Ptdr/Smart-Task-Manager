@@ -4,7 +4,6 @@ import React from "react";
 import { useRouter } from "next/navigation";
 import { FaTasks, FaPlus, FaEdit, FaTrash, FaRegCalendarAlt, FaChartLine } from "react-icons/fa";
 import "./style.css";
-import { MdDashboard } from "react-icons/md";
 import Buttons from "./Buttons";
 import Dock from "./Dock";
 
@@ -42,27 +41,27 @@ const LandingPage = () => {
             </button>
             <div className="features-grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
 
-              <div className="feature animate-fade-in p-4" onClick={() => router.push("/task-manager")}>
+              <div className="feature animate-fade-in-up p-4" onClick={() => router.push("/task-manager")}>
                 <FaTasks className="feature-icon" />
                 <span>Manage Task</span>
               </div>
-              <div className="feature animate-fade-in p-4" onClick={() => router.push("/task-manager")}>
+              <div className="feature animate-fade-in-up2 p-4" onClick={() => router.push("/task-manager")}>
                 <FaPlus className="feature-icon" />
                 <span>Add Task</span>
               </div>
-              <div className="feature animate-fade-in p-4" onClick={() => router.push("/task-manager")}>
+              <div className="feature animate-fade-in-up3 p-4" onClick={() => router.push("/task-manager")}>
                 <FaEdit className="feature-icon" />
                 <span>Update Task</span>
               </div>
-              <div className="feature animate-fade-in p-4" onClick={() => router.push("/task-manager")}>
+              <div className="feature animate-fade-in-up4 p-4" onClick={() => router.push("/task-manager")}>
                 <FaTrash className="feature-icon" />
                 <span>Delete Task</span>
               </div>
-              <div className="feature animate-fade-in p-4" onClick={() => router.push("/members")}>
+              <div className="feature animate-fade-in-up5 p-4" onClick={() => router.push("/members")}>
                 <FaRegCalendarAlt className="feature-icon" />
                 <span>View Timeline</span>
               </div>
-              <div className="feature animate-fade-in p-4" onClick={() => router.push("/members")}>
+              <div className="feature animate-fade-in-up6 p-4" onClick={() => router.push("/members")}>
                 <FaChartLine className="feature-icon" />
                 <span>Analyze Tasks</span>
               </div>
