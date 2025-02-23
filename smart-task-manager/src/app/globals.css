@@ -48,7 +48,6 @@ h2, h3, p, label, .w-full {
   background-color: #333;
 }
 
-<<<<<<< HEAD
 .heading {
   width: 100%;
   background-color: #212121;
@@ -60,11 +59,6 @@ h2, h3, p, label, .w-full {
 .footer {
   background-color: #212121;
   margin-top: 150px;
-=======
-.btngrp:active {
-  transform: scale(0.99);
-  background-color: #333;
->>>>>>> b4d4261dcbbbb44e90cc49347d2c99a216c27645
 }
 
 @import "react-calendar-timeline/dist/style.css";
