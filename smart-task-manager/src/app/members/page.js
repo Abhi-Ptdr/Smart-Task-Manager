@@ -12,7 +12,10 @@ const MembersDashboard = () => {
   return (
     <div className="p-4 flex flex-col">
       <div className="flex justify-between mt-2">
-        <h1 className="text-2xl font-bold">Members Dashboard</h1>
+        <div className="flex items-center justify-center space-x-2">
+          <img className="logo" src="/TaskLogo.png" alt="Task Logo" />
+          <h1 className="text-2xl font-bold">Task Manager</h1>
+        </div>
         <button
           onClick={() => router.push("/")}
           className="button-13"

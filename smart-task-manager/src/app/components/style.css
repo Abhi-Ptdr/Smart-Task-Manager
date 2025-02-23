@@ -51,6 +51,16 @@
   align-items: center; /* Center children horizontally*/
 }
 
+.header {
+  position: relative;
+  margin-top: 25px;
+}
+
+.hr {
+  margin-bottom: 100px;
+  position: relative;
+}
+
 .animate-fade-in {
   animation: fadeIn 2s ease-in-out;
 }
@@ -80,6 +90,7 @@
   max-width: 220px; /* Increased max width */
   text-align: center;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
 }
 
 .feature:hover {

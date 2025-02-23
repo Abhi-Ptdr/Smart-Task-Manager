@@ -77,7 +77,10 @@ const TaskManagerPage = () => {
     <DragDropContext onDragEnd={onDragEnd}>
       <div className="p-4">
         <div className="flex justify-between mt-2">
-          <h1 className="text-2xl font-bold">Smart Task Manager</h1>
+          <div className="flex items-center justify-center space-x-2">
+            <img className="logo" src="/TaskLogo.png" alt="Task Logo" />
+            <h1 className="text-2xl font-bold">Task Manager</h1>
+          </div>
           <button
             onClick={() => router.push("/members")}
             className="button-13"
@@ -88,7 +91,7 @@ const TaskManagerPage = () => {
             </div>
           </button>
         </div>
-        <hr className="hr mb-10 mt-3"/>
+        <hr className="mb-10 mt-3"/>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {categories.map((category) => (
             <CategoryCard
