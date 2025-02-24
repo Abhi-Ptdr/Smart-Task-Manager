@@ -1,10 +1,16 @@
 import Task from '../models/taskModel.js';
 
+// @desc    Get all tasks
+// @route   GET /api/tasks
+// @access  Public
 const getTasks = async (req, res) => {
   const tasks = await Task.find({});
   res.json(tasks);
 };
 
+// @desc    Create a task
+// @route   POST /api/tasks
+// @access  Public
 const createTask = async (req, res) => {
   const { title, start, end, assignees, category } = req.body;
 
@@ -20,6 +26,9 @@ const createTask = async (req, res) => {
   res.status(201).json(createdTask);
 };
 
+// @desc    Update a task
+// @route   PUT /api/tasks/:id
+// @access  Public
 const updateTask = async (req, res) => {
   const { title, start, end, assignees, category } = req.body;
 
@@ -40,11 +49,14 @@ const updateTask = async (req, res) => {
   }
 };
 
+// @desc    Delete a task
+// @route   DELETE /api/tasks/:id
+// @access  Public
 const deleteTask = async (req, res) => {
   const task = await Task.findById(req.params.id);
 
   if (task) {
-    await task.remove();
+    await Task.deleteOne({ _id: req.params.id });
     res.json({ message: 'Task removed' });
   } else {
     res.status(404);

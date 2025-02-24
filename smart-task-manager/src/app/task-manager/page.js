@@ -1,33 +1,38 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { DragDropContext } from "@hello-pangea/dnd";
 import { useRouter } from "next/navigation";
 import CategoryCard from "../components/CategoryCard";
 import TaskModal from "../components/TaskModal";
 import AddCategoryCard from "../components/AddCategoryCard";
 import AddCategoryModal from "../components/AddCategoryModal";
-import { useTaskStore } from "../store/taskStore";
+import { getTasks, createTask, updateTask, deleteTask } from "../api/taskService";
+import { getCategories, createCategory, deleteCategory } from "../api/categoryService";
 import Buttons from "../components/Buttons";
 import Dock from "../components/Dock";
 import Footer from "../components/Footer";
 
-const CATEGORIES = [
-  "General Information",
-  "Backlog",
-  "In Progress",
-  "Paused",
-  "Ready For Launch",
-];
-
 const TaskManagerPage = () => {
-  const { tasks, addTask, editTask, updateTaskCategory, deleteTask } = useTaskStore();
+  const [tasks, setTasks] = useState([]);
+  const [categories, setCategories] = useState([]);
   const [isModalOpen, setModalOpen] = useState(false);
   const [isAddCategoryModalOpen, setAddCategoryModalOpen] = useState(false);
   const [editingTask, setEditingTask] = useState(null);
   const [currentCategory, setCurrentCategory] = useState("");
-  const [categories, setCategories] = useState(CATEGORIES);
   const router = useRouter();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const tasksData = await getTasks();
+      setTasks(tasksData);
+
+      const categoriesData = await getCategories();
+      setCategories(categoriesData);
+    };
+
+    fetchData();
+  }, []);
 
   const openModal = (category) => {
     setCurrentCategory(category);
@@ -41,8 +46,30 @@ const TaskManagerPage = () => {
     setCurrentCategory("");
   };
 
-  const handleAddCategory = (newCategory) => {
-    setCategories([...categories, newCategory]);
+  const handleAddTask = async (task) => {
+    if (editingTask) {
+      const updatedTask = await updateTask(editingTask._id, { ...task, category: currentCategory });
+      setTasks(tasks.map((t) => (t._id === updatedTask._id ? updatedTask : t)));
+    } else {
+      const newTask = await createTask({ ...task, category: currentCategory });
+      setTasks([...tasks, newTask]);
+    }
+    closeModal();
+  };
+
+  const handleDeleteTask = async (id) => {
+    await deleteTask(id);
+    setTasks(tasks.filter((task) => task._id !== id));
+  };
+
+  const handleAddCategory = async (newCategory) => {
+    const createdCategory = await createCategory({ name: newCategory });
+    setCategories([...categories, createdCategory]);
+  };
+
+  const handleDeleteCategory = async (id) => {
+    await deleteCategory(id);
+    setCategories(categories.filter((category) => category._id !== id));
   };
 
   const onDragEnd = (result) => {
@@ -50,13 +77,12 @@ const TaskManagerPage = () => {
 
     const { source, destination } = result;
 
-    // If the task is dropped in the same category, reorder the tasks
     if (source.droppableId === destination.droppableId) {
       // Handle reordering logic here if needed
     } else {
-      // Update the task category
       const taskId = result.draggableId;
-      updateTaskCategory(taskId, destination.droppableId);
+      updateTask(taskId, { category: destination.droppableId });
+      setTasks(tasks.map((task) => (task._id === taskId ? { ...task, category: destination.droppableId } : task)));
     }
   };
 
@@ -80,17 +106,17 @@ const TaskManagerPage = () => {
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {categories.map((category) => (
             <CategoryCard
-              key={category}
-              title={category}
-              category={category}
-              tasks={tasks} // Make sure tasks is properly passed
-              onAddTask={() => openModal(category)}
+              key={category._id}
+              title={category.name}
+              category={category.name}
+              tasks={tasks.filter((task) => task.category === category.name)}
+              onAddTask={() => openModal(category.name)}
               onEditTask={(task) => {
                 setEditingTask(task);
-                setCurrentCategory(category);
+                setCurrentCategory(category.name);
                 setModalOpen(true);
               }}
-              onDeleteTask={deleteTask}
+              onDeleteTask={handleDeleteTask}
             />
           ))}
           <AddCategoryCard onAddCategory={() => setAddCategoryModalOpen(true)} />
@@ -100,7 +126,8 @@ const TaskManagerPage = () => {
             isEditing={!!editingTask}
             taskToEdit={editingTask}
             onClose={closeModal}
-            category={currentCategory} // Pass the current category to the modal
+            category={currentCategory}
+            onSave={handleAddTask}
           />
         )}
         {isAddCategoryModalOpen && (
