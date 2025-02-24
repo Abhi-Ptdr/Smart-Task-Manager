@@ -47,6 +47,7 @@ const TaskManagerPage = () => {
   };
 
   const handleAddTask = async (task) => {
+    console.log("handleAddTask called with task:", task);
     if (editingTask) {
       const updatedTask = await updateTask(editingTask._id, { ...task, category: currentCategory });
       setTasks(tasks.map((t) => (t._id === updatedTask._id ? updatedTask : t)));

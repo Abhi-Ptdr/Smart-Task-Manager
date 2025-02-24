@@ -12,7 +12,7 @@ const TaskList = ({ category, tasks, onEditTask, onDeleteTask }) => {
       {(provided) => (
         <div {...provided.droppableProps} ref={provided.innerRef}>
           {filteredTasks.map((task, index) => (
-            <Draggable key={task.id} draggableId={task.id} index={index}>
+            <Draggable key={task._id} draggableId={task._id} index={index}>
               {(provided) => (
                 <div
                   ref={provided.innerRef}

@@ -1,7 +1,6 @@
 "use client";
 
-import React, { useState } from "react";
-import { useTaskStore } from "../store/taskStore";
+import React, { useState, useEffect } from "react";
 import Select from "react-select";
 
 const employees = [
@@ -11,29 +10,30 @@ const employees = [
   { value: "David", label: "David" },
 ]; // Example employee names
 
-const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category }) => {
-  const { addTask, editTask } = useTaskStore();
+const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category, onSave }) => {
   const [title, setTitle] = useState(taskToEdit?.title || "");
   const [start, setStart] = useState(taskToEdit?.start || "");
   const [end, setEnd] = useState(taskToEdit?.end || "");
-  const [assignees, setAssignees] = useState(taskToEdit?.assignees || []);
+  const [assignees, setAssignees] = useState(taskToEdit?.assignees.map(assignee => ({ value: assignee, label: assignee })) || []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  useEffect(() => {
+    if (isEditing && taskToEdit) {
+      setTitle(taskToEdit.title);
+      setStart(taskToEdit.start);
+      setEnd(taskToEdit.end);
+      setAssignees(taskToEdit.assignees.map(assignee => ({ value: assignee, label: assignee })));
+    }
+  }, [isEditing, taskToEdit]);
+
+  const handleSave = () => {
     const task = {
-      id: isEditing ? taskToEdit.id : `${Date.now()}`, // Ensure unique ID
       title,
       start,
       end,
-      assignees,
+      assignees: assignees.map((assignee) => assignee.value),
       category,
     };
-    if (isEditing) {
-      editTask(task);
-    } else {
-      addTask(task);
-    }
-    onClose();
+    onSave(task);
   };
 
   return (
@@ -45,34 +45,34 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category }) 
             &times;
           </button>
         </div>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => { e.preventDefault(); handleSave(); }}>
           <div className="mb-4">
             <label className="block mb-2 font-medium">Title</label>
             <input
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border border-gray-300 rounded"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 font-medium">Start Date</label>
+            <label className="block mb-2 font-medium">Start</label>
             <input
               type="datetime-local"
               value={start}
               onChange={(e) => setStart(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border border-gray-300 rounded"
               required
             />
           </div>
           <div className="mb-4">
-            <label className="block mb-2 font-medium">End Date</label>
+            <label className="block mb-2 font-medium">End</label>
             <input
               type="datetime-local"
               value={end}
               onChange={(e) => setEnd(e.target.value)}
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border border-gray-300 rounded"
               required
             />
           </div>
@@ -87,17 +87,12 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category }) 
               required
             />
           </div>
-          <div className="flex justify-end">
-            <button
-              type="button"
-              onClick={onClose}
-              className="button-12 mx-2"
-              style={{ height: "30px", width: "80px" }}
-            >
+          <div className="flex justify-end space-x-2">
+            <button type="button" onClick={onClose} className="button-12">
               Cancel
             </button>
-            <button type="submit" className="button-64">
-              <span className="text">{isEditing ? "Save" : "Add"} </span>
+            <button type="submit" className="button-12">
+              {isEditing ? "Update" : "Save"}
             </button>
           </div>
         </form>

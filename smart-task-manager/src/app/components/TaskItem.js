@@ -15,14 +15,14 @@ const TaskItem = ({ task, provided, onEditTask, onDeleteTask }) => {
         <h3 className="font-bold">{task.title}</h3>
         <p className="text-sm text-gray-500">{task.status}</p>
         <p className="text-sm text-gray-500">
-          Assignees: {task.assignees.map((assignee) => assignee.label).join(", ")}
+          Assignees: {task.assignees.join(", ")}
         </p>
       </div>
       <div className="flex space-x-2">
         <button onClick={() => onEditTask(task)} className="text-blue-500 hover:text-blue-700">
           <FaEdit />
         </button>
-        <button onClick={() => onDeleteTask(task.id)} className="text-red-500 hover:text-red-700">
+        <button onClick={() => onDeleteTask(task._id)} className="text-red-500 hover:text-red-700">
           <FaTrash />
         </button>
       </div>
