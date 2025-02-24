@@ -73,7 +73,7 @@ const TaskManagerPage = () => {
     setCategories(categories.filter((category) => category._id !== id));
   };
 
-  const onDragEnd = (result) => {
+  const onDragEnd = async (result) => {
     if (!result.destination) return;
 
     const { source, destination } = result;
@@ -82,8 +82,15 @@ const TaskManagerPage = () => {
       // Handle reordering logic here if needed
     } else {
       const taskId = result.draggableId;
-      updateTask(taskId, { category: destination.droppableId });
-      setTasks(tasks.map((task) => (task._id === taskId ? { ...task, category: destination.droppableId } : task)));
+      const taskToUpdate = tasks.find((task) => task._id === taskId);
+      if (taskToUpdate) {
+        try {
+          const updatedTask = await updateTask(taskId, { ...taskToUpdate, category: destination.droppableId });
+          setTasks(tasks.map((task) => (task._id === taskId ? updatedTask : task)));
+        } catch (error) {
+          console.error("Error updating task:", error);
+        }
+      }
     }
   };
 

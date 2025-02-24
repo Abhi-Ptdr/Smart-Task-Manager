@@ -10,17 +10,27 @@ const employees = [
   { value: "David", label: "David" },
 ]; // Example employee names
 
+const formatDateTime = (dateTime) => {
+  const date = new Date(dateTime);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, '0');
+  const day = String(date.getDate()).padStart(2, '0');
+  const hours = String(date.getHours()).padStart(2, '0');
+  const minutes = String(date.getMinutes()).padStart(2, '0');
+  return `${year}-${month}-${day}T${hours}:${minutes}`;
+};
+
 const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category, onSave }) => {
   const [title, setTitle] = useState(taskToEdit?.title || "");
-  const [start, setStart] = useState(taskToEdit?.start || "");
-  const [end, setEnd] = useState(taskToEdit?.end || "");
+  const [start, setStart] = useState(taskToEdit ? formatDateTime(taskToEdit.start) : "");
+  const [end, setEnd] = useState(taskToEdit ? formatDateTime(taskToEdit.end) : "");
   const [assignees, setAssignees] = useState(taskToEdit?.assignees.map(assignee => ({ value: assignee, label: assignee })) || []);
 
   useEffect(() => {
     if (isEditing && taskToEdit) {
       setTitle(taskToEdit.title);
-      setStart(taskToEdit.start);
-      setEnd(taskToEdit.end);
+      setStart(formatDateTime(taskToEdit.start));
+      setEnd(formatDateTime(taskToEdit.end));
       setAssignees(taskToEdit.assignees.map(assignee => ({ value: assignee, label: assignee })));
     }
   }, [isEditing, taskToEdit]);
