@@ -70,7 +70,7 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category, on
               type="text"
               value={title}
               onChange={(e) => setTitle(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded inputfield"
               required
             />
           </div>
@@ -80,7 +80,7 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category, on
               type="datetime-local"
               value={start}
               onChange={(e) => setStart(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded inputfield"
               required
             />
           </div>
@@ -90,7 +90,7 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category, on
               type="datetime-local"
               value={end}
               onChange={(e) => setEnd(e.target.value)}
-              className="w-full p-2 border border-gray-300 rounded"
+              className="w-full p-2 border border-gray-300 rounded inputfield"
               required
             />
           </div>
@@ -101,7 +101,7 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category, on
               value={assignees}
               onChange={setAssignees}
               options={employees}
-              className="w-full assignees"
+              className="w-full inputfield"
               required
             />
           </div>

@@ -30,7 +30,7 @@ const AddCategoryModal = ({ isOpen, onClose, onAddCategory }) => {
           value={categoryName}
           onChange={(e) => setCategoryName(e.target.value)}
           onKeyDown={handleKeyDown}
-          className="border border-gray-300 p-2 rounded-lg w-full mb-4"
+          className="border border-gray-300 p-2 rounded-lg w-full mb-4 inputfield"
           placeholder="Enter category name"
         />
         <div className="flex justify-end space-x-2">

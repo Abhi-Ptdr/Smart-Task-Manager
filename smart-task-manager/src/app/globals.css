@@ -25,7 +25,7 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-h2, h3, p, label, .assignees {
+h2, h3, p, label, .inputfield{
   color: #00122d;
 }
 
