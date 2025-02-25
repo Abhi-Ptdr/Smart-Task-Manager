@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState } from "react";
 import Timeline from "react-calendar-timeline";
-import { useTaskStore } from "../store/taskStore";
 import moment from "moment";
 
 const categoryClasses = {
@@ -13,12 +12,11 @@ const categoryClasses = {
   "Ready For Launch": "category-ready-for-launch",
 };
 
-const TimelineDashboard = ({ view }) => {
-  const { tasks } = useTaskStore();
+const TimelineDashboard = ({ tasks = [], view }) => {
   const [timelineData, setTimelineData] = useState([]);
   const [groups, setGroups] = useState([]);
-  const [visibleTimeStart, setVisibleTimeStart] = useState(null);
-  const [visibleTimeEnd, setVisibleTimeEnd] = useState(null);
+  const [visibleTimeStart, setVisibleTimeStart] = useState(moment().startOf('day').valueOf());
+  const [visibleTimeEnd, setVisibleTimeEnd] = useState(moment().endOf('day').valueOf());
 
   useEffect(() => {
     // Define all possible assignees
@@ -39,9 +37,9 @@ const TimelineDashboard = ({ view }) => {
     const newTimelineData = [];
     newGroups.forEach((group) => {
       tasks.forEach((task) => {
-        if (task.assignees.some((assignee) => assignee.label === group.title)) {
+        if (task.assignees && task.assignees.some((assignee) => assignee === group.title)) {
           newTimelineData.push({
-            id: `${task.id}-${group.id}`, // Ensure unique ID for each task-assignee combination
+            id: `${task._id}-${group.id}`, // Ensure unique ID for each task-assignee combination
             group: group.id,
             title: task.title,
             start_time: moment(task.start),
@@ -90,10 +88,6 @@ const TimelineDashboard = ({ view }) => {
     setVisibleTimeStart(visibleTimeStart);
     setVisibleTimeEnd(visibleTimeEnd);
   };
-
-  if (!visibleTimeStart || !visibleTimeEnd) {
-    return null; // Render nothing until the visible times are set
-  }
 
   return (
     <div className="mt-6">
