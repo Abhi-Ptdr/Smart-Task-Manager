@@ -101,7 +101,7 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category, on
               value={assignees}
               onChange={setAssignees}
               options={employees}
-              className="w-full"
+              className="w-full assignees"
               required
             />
           </div>
