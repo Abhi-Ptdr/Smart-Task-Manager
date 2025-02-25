@@ -39,7 +39,7 @@ const MembersDashboard = () => {
         <div className="heading">
           <h1 className="text-2xl font-bold text-center">Your Tasks Timing</h1>
         </div>
-        <div className="mt-4 grid grid-cols-2 gap-2 md:flex md:justify-center md:space-x-2">
+        <div className="mt-6 mb-4 grid grid-cols-2 gap-2 md:flex md:justify-center md:space-x-2">
           <button onClick={() => setView("year")} className="button-13">
             <span className="text">Year View</span>
           </button>

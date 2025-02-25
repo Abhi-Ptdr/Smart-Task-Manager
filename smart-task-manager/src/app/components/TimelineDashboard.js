@@ -21,10 +21,18 @@ const TimelineDashboard = ({ tasks = [], view }) => {
   useEffect(() => {
     // Define all possible assignees
     const allAssignees = [
-      { value: "Alice", label: "Alice" },
       { value: "Bob", label: "Bob" },
-      { value: "Charlie", label: "Charlie" },
       { value: "David", label: "David" },
+      { value: "Eve", label: "Eve" },
+      { value: "Alice", label: "Alice" },
+      { value: "Jack", label: "Jack" },
+      { value: "Emily", label: "Emily" },
+      { value: "Michael", label: "Michael" },
+      { value: "Charlie", label: "Charlie" },
+      { value: "Sophia", label: "Sophia" },
+      { value: "James", label: "James" },
+      { value: "Olivia", label: "Olivia" },
+      { value: "Daniel", label: "Daniel" },
     ];
 
     // Create groups for the timeline

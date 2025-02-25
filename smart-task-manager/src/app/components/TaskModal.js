@@ -4,10 +4,18 @@ import React, { useState, useEffect } from "react";
 import Select from "react-select";
 
 const employees = [
-  { value: "Alice", label: "Alice" },
   { value: "Bob", label: "Bob" },
-  { value: "Charlie", label: "Charlie" },
   { value: "David", label: "David" },
+  { value: "Eve", label: "Eve" },
+  { value: "Alice", label: "Alice" },
+  { value: "Jack", label: "Jack" },
+  { value: "Emily", label: "Emily" },
+  { value: "Michael", label: "Michael" },
+  { value: "Charlie", label: "Charlie" },
+  { value: "Sophia", label: "Sophia" },
+  { value: "James", label: "James" },
+  { value: "Olivia", label: "Olivia" },
+  { value: "Daniel", label: "Daniel" },
 ]; // Example employee names
 
 const formatDateTime = (dateTime) => {
@@ -48,7 +56,7 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category, on
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-10">
-      <div className="bg-white p-6 rounded-lg shadow-lg w-1/3">
+      <div className="bg-white p-6 rounded-lg shadow-lg w-1/3 max-h-full overflow-y-auto">
         <div className="flex justify-between items-center mb-4">
           <h2 className="text-xl font-bold">{isEditing ? "Edit Task" : "Add Task"}</h2>
           <button onClick={onClose} className="button-12">
