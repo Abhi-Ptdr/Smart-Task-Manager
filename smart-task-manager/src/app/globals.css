@@ -61,6 +61,14 @@ h2, h3, p, label, .w-full {
   margin-top: 100px;
 }
 
+#hero-input {
+  background-color: #0d1117;
+  width: 80%;
+  height: 35px;
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+}
+
 @import "react-calendar-timeline/dist/style.css";
 
 .category-card {

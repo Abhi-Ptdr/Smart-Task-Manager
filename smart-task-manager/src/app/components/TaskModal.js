@@ -109,8 +109,8 @@ const TaskModal = ({ isEditing = false, taskToEdit = null, onClose, category, on
             <button type="button" onClick={onClose} className="button-12">
               Cancel
             </button>
-            <button type="submit" className="button-12">
-              {isEditing ? "Update" : "Save"}
+            <button type="submit" className="button-64">
+              <span className="text">{isEditing ? "Update" : "Save"}</span>
             </button>
           </div>
         </form>
