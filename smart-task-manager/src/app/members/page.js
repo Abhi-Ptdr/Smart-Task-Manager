@@ -39,21 +39,21 @@ const MembersDashboard = () => {
         <div className="heading">
           <h1 className="text-2xl font-bold text-center">Your Tasks Timing</h1>
         </div>
-        <div className="mt-6 mb-4 grid grid-cols-2 gap-2 md:flex md:justify-center md:space-x-2">
-          <button onClick={() => setView("year")} className="button-13">
+        <div className="mt-6 mb-4 grid grid-cols-2 gap-2 md:flex md:justify-center md:space-x-2 animate-fade-in-up">
+          <button onClick={() => setView("year")} className="button-13 animate-pulse">
             <span className="text">Year View</span>
           </button>
-          <button onClick={() => setView("month")} className="button-13">
+          <button onClick={() => setView("month")} className="button-13 animate-pulse">
             <span className="text">Month View</span>
           </button>
-          <button onClick={() => setView("day")} className="button-13">
+          <button onClick={() => setView("day")} className="button-13 animate-pulse">
             <span className="text">Day View</span>
           </button>
-          <button onClick={() => setView("hour")} className="button-13">
+          <button onClick={() => setView("hour")} className="button-13 animate-pulse">
             <span className="text">Hour View</span>
           </button>
         </div>
-        <div className="flex-grow">
+        <div className="flex-grow animate-fade-in-up">
           <TimelineDashboard tasks={tasks} view={view} />
         </div>
       </div>
