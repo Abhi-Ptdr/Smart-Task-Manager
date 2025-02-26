@@ -11,7 +11,13 @@ connectDB();
 
 const app = express();
 
-app.use(cors()); // Add this line to enable CORS
+const corsOptions = {
+    origin: process.env.FRONTEND_URL,
+    methods: ["GET", "PUT", "POST", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
+};
+
+app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use('/api/tasks', taskRoutes);
